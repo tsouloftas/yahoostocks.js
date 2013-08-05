@@ -32,15 +32,28 @@
     var baseurl = "http://query.yahooapis.com/v1/public/yql?q=";
     var formatjson = "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
-    var stockticker = $('div[id="stock"]').data("stock-ticker");
-    var stockinfo = $('div[id="stock"]').data("stock-info");
-    
-    var query = "select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + stockticker + "%22)%0A%09%09&";
+    // For each occurrence of stock class, create an object stored in an
+    // array that we will use later
+    var stocks = [];
 
+
+    $('div[class="ys"]').each(function(index) {
+      var stockticker = $(this).data('stock-ticker');
+      var stockinfo = $(this).data('stock-info');
+      var stock = {
+       ticker: stockticker,
+       info: stockinfo
+      };
+      stocks.push(stock);
+    });
+    
+    // Construct and send our YQL request 
+    var ticker = stocks[0].ticker; 
+    var query = "select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + ticker + "%22)%0A%09%09&";
     var url = baseurl + query + formatjson;
 
     $.getJSON(url, function(data) {
-      $('#stock').text(data.query.results.quote.Name);
+      $('.ys').text(data.query.results.quote.LastTradePriceOnly);
     });
 
     return false;
