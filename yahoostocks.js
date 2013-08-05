@@ -54,10 +54,8 @@
     });
     
     // Construct and send our YQL request
-    alert(tickers[0]);
-    alert(tickers[1]);
-    var ticker = stocks[0].ticker; 
-    var query = "select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + ticker + "%22)%0A%09%09&";
+    ar tickers_string = tickers.join("%22,%22");
+    var query = "select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + ticker_string + "%22)%0A%09%09&";
     var url = baseurl + query + formatjson;
 
     $.getJSON(url, function(data) {
