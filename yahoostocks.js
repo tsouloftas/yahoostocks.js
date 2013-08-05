@@ -33,9 +33,10 @@
     var formatjson = "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
     // For each occurrence of stock class, create an object stored in an
-    // array that we will use later
+    // array that we will use later & create an array of the unique
+    // tickers to use for the query
     var stocks = [];
-
+    var tickers = [];
 
     $('div[class="ys"]').each(function(index) {
       var stockticker = $(this).data('stock-ticker');
@@ -43,11 +44,18 @@
       var stock = {
        ticker: stockticker,
        info: stockinfo
-      };
+      }; 
+      // Make sure ticker is not already in array
+      var exists = $.inArray(stockticker, tickers);
+      if (exists == -1) { 
+        tickers.push(stockticker);
+      }
       stocks.push(stock);
     });
     
-    // Construct and send our YQL request 
+    // Construct and send our YQL request
+    alert(tickers[0]);
+    alert(tickers[1]);
     var ticker = stocks[0].ticker; 
     var query = "select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + ticker + "%22)%0A%09%09&";
     var url = baseurl + query + formatjson;
