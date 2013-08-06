@@ -59,8 +59,9 @@
     var url = baseurl + query + formatjson;
 
     $.getJSON(url, function(data) {
-      var count = data.query.count;
-      $('.ys').text(data.query.results.quote[0].LastTradePriceOnly);
+      $.each(stocks, function(index, value) {
+        $('.ys:eq('+ index +')').text(data.query.results.quote[index].LastTradePriceOnly);
+      });
     });
 
     return false;
