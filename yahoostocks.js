@@ -53,13 +53,14 @@
       stocks.push(stock);
     });
     
-    // Construct and send our YQL request
-    ar tickers_string = tickers.join("%22,%22");
-    var query = "select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + ticker_string + "%22)%0A%09%09&";
+    // Construct our YQL request
+    var tickers_string = tickers.join("%22%2C%20%22");
+    var query = "select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + tickers_string + "%22)%0A%09%09&";
     var url = baseurl + query + formatjson;
 
     $.getJSON(url, function(data) {
-      $('.ys').text(data.query.results.quote.LastTradePriceOnly);
+      var count = data.query.count;
+      $('.ys').text(data.query.results.quote[0].LastTradePriceOnly);
     });
 
     return false;
