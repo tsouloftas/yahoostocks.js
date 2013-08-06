@@ -2,11 +2,11 @@ YahooStocks.js
 ==============
 
 The easiest way to display stock data on your website. (Thanks for the
-idea, [jalcine!](http://github.com/jalcine)
+idea, [jalcine!](http://github.com/jalcine))
 
 ## Usage
 
-```js
+```xhtml
 <!DOCTYPE html>
 <html>
   <head>
