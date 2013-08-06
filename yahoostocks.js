@@ -58,9 +58,12 @@
     var query = "select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + tickers_string + "%22)%0A%09%09&";
     var url = baseurl + query + formatjson;
 
+    // Retrieve json, find which ticker corresponds to the stock, and
+    // update the correct div with the proper info
     $.getJSON(url, function(data) {
       $.each(stocks, function(index, value) {
-        $('.ys:eq('+ index +')').text(data.query.results.quote[index].LastTradePriceOnly);
+        var x = $.inArray(value.ticker, tickers);
+        $('.ys:eq('+ index +')').text(data.query.results.quote[x][value.info]);
       });
     });
 
