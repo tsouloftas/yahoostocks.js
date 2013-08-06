@@ -12,12 +12,8 @@ idea, [jalcine!](http://github.com/jalcine))
   <head>
   </head> 
   <body>
-    <div class="ys" data-stock-ticker="GOOG"
-      data-stock-info="LastTradePriceOnly"></div>
-    <div class="ys" data-stock-ticker="GOOG"
-      data-stock-info="Open"></div>
-    <div class="ys" data-stock-ticker="FB"
-      data-stock-info="LastTradePriceOnly"></div>
+    <div class="ys" data-stock-ticker="GOOG" data-stock-info="LastTradePriceOnly"></div>
+    <div class="ys" data-stock-ticker="FB" data-stock-info="Open"></div>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="../yahoostocks.js"></script>
   </body>
